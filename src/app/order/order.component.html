@@ -1,0 +1,57 @@
+<div class="table-my">
+  <div class="form-group input-container">
+    <input type="text" class="form-control" placeholder="Reward" [(ngModel)]="reward">
+    <input type="text" class="form-control" placeholder="Description" [(ngModel)]="description">
+  </div>
+  <div class="form-group input-container">
+    <input type="text" class="form-control" placeholder="Client" [(ngModel)]="client">
+    <input type="text" class="form-control" placeholder="Crew id" [(ngModel)]="crewId">
+    <select [(ngModel)]="status" class="form-control">
+      <option value="" selected disabled hidden>Choose status</option>
+      <option value="ANALYSIS">
+        Analysis
+      </option>
+      <option value="IN_PROGRESS">
+        In progress
+      </option>
+      <option value="DONE">
+        Done
+      </option>
+      <option value="REJECTED">
+        Rejected
+      </option>
+    </select>
+    <button *ngIf="!editIsTrue" class="button wood" (click)="addOrder()">Add</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editOrderSave()">Edit</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editOrderCancel()">Cancel</button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Reward</th>
+      <th scope="col">Description</th>
+      <th scope="col">Client</th>
+      <th scope="col">Captain name</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of orders">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.reward}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.client}}</td>
+      <td>{{item.crew.captain}}</td>
+      <td>
+        <span class="spacer-div">
+          {{item.orderStatus}}
+          <span class="spacer"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-pencil" (click)="editOrder(item)"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-trash" (click)="deleteOrder(item)"></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

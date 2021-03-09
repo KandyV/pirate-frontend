@@ -1,0 +1,62 @@
+<div class="table-my">
+  <div class="form-group input-container">
+    <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="name">
+    <input type="text" class="form-control" id="speed" placeholder="Speed" [(ngModel)]="speed">
+    <select [(ngModel)]="type" class="form-control">
+      <option value="" selected disabled hidden>Choose type</option>
+      <option value="PINNACE">
+        Pinacle
+      </option>
+      <option value="SLOOP">
+        Sloop
+      </option>
+      <option value="BARQUE">
+        Barque
+      </option>
+      <option value="CARGO_FLUYT">
+        Cargo Fluyt
+      </option>
+      <option value="MERCHANTMAN">
+        Merchantman
+      </option>
+      <option value="FRIGATE">
+        Frigate
+      </option>
+      <option value="GALLEON">
+        Galleon
+      </option>
+    </select>
+    <input type="text" class="form-control" id="crewId" placeholder="Crew Id"  [(ngModel)]="crewId">
+    <button *ngIf="!editIsTrue" type="button" class="button wood" (click)="addShip()">Add</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editShipSave()">Edit</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editShipCancel()">Cancel</button>
+  </div>
+  <table class="table table-bordered">
+    <thead >
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Speed</th>
+      <th scope="col">Type</th>
+      <th scope="col">Captain</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of ships">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.speed}}</td>
+      <td>{{item.shipType}}</td>
+      <td>
+        <span class="spacer-div">
+          {{item.crew.captain}}
+          <span class="spacer"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-pencil" (click)="editShip(item)"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-trash" (click)="deleteShip(item)"></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,52 @@
+<div class="table-my">
+  <div class="form-group input-container">
+    <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="name">
+    <select [(ngModel)]="type" class="form-control">
+      <option value="" selected disabled hidden>Choose type</option>
+      <option value="PROVISIONS">
+        Provision
+      </option>
+      <option value="ALCOHOL">
+        Alcohol
+      </option>
+      <option value="CLOTH">
+        Cloth
+      </option>
+      <option value="JEWELLERY">
+        Jewellery
+      </option>
+    </select>
+    <input type="text" class="form-control" id="quantity" placeholder="Quantity" [(ngModel)]="quantity">
+    <input type="text" class="form-control" id="shipId" placeholder="Ship id" [(ngModel)]="shipId">
+    <button *ngIf="!editIsTrue"  class="button wood" (click)="addHoldItem()">Add</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editHoldItemSave()">Edit</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editHoldItemCancel()">Cancel</button>
+  </div>
+  <table class="table table-bordered">
+    <thead >
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Ship name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of holdItems">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.holdType}}</td>
+      <td>{{item.quantity}}</td>
+      <td>
+        <span class="spacer-div">
+          {{item.ship.name}}
+          <span class="spacer"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-pencil" (click)="editHoldItem(item)"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-trash" (click)="deleteHoldItem(item)"></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,35 @@
+<div class="table-my">
+  <div class="form-group input-container">
+    <input type="text" class="form-control" id="captain" placeholder="Captain" [(ngModel)]="captain">
+    <input type="text" class="form-control" id="size" placeholder="Size"  [(ngModel)]="size">
+    <input type="text" class="form-control" id="nationality" placeholder="Nationality"  [(ngModel)]="nationality">
+    <button *ngIf="!editIsTrue" type="button" class="button wood" (click)="addCrew()">Add</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editCrewSave()">Edit</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editCrewCancel()">Cancel</button>
+  </div>
+  <table class="table table-bordered">
+    <thead >
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Captain</th>
+      <th scope="col">Size</th>
+      <th scope="col">Nationality</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of crews">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.captain}}</td>
+      <td>{{item.size}}</td>
+      <td>
+        <span class="spacer-div">
+          {{item.nationality}}
+          <span class="spacer"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-pencil" (click)="editCrew(item)"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-trash" (click)="deleteCrew(item)"></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

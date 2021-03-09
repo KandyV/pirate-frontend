@@ -1,0 +1,24 @@
+<div class="toolbar" role="banner">
+  <div class="toolbar-container">
+    <h1>Corsair</h1>
+    <h2 routerLink="/order" routerLinkActive="active">Order</h2>
+    <h2 routerLink="/ship" routerLinkActive="active">Ship</h2>
+    <h2 routerLink="/crew" routerLinkActive="active">Crew</h2>
+    <h2 routerLink="/weapon" routerLinkActive="active">Weapon</h2>
+    <h2 routerLink="/holdItem" routerLinkActive="active">HoldItem</h2>
+  </div>
+</div>
+<div class="sand-transition">
+</div>
+
+<div class="content" role="main">
+  <div class="route-outlet">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="ship" id="ship"
+       (mousedown)="onmousedown($event)"
+       (dragstart)="ondragstart()">
+    <img
+      src="https://i.pinimg.com/originals/7e/ce/a4/7ecea4ee329f52c006ee142fa8c213c3.gif">
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="table-my">
+  <div class="form-group input-container">
+    <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="name">
+    <input type="text" class="form-control" placeholder="Quantity"  [(ngModel)]="quantity">
+    <select [(ngModel)]="type" class="form-control">
+      <option value="" selected disabled hidden>Choose type</option>
+      <option value="GRAPPLING_HOOK">
+        Grappling hook
+      </option>
+      <option value="CUTLASS">
+        Cutlass
+      </option>
+      <option value="MUSKET">
+        Musket
+      </option>
+      <option value="CANNON">
+        Cannon
+      </option>
+      <option value="BOARDING_AXE">
+        Boarding axe
+      </option>
+      <option value="BLUNDERBUS">
+        Blunderbus
+      </option>
+    </select>
+    <select [(ngModel)]="wear" class="form-control">
+      <option value="" selected disabled hidden>Choose wear</option>
+      <option value="FACTORY_NEW">
+        Factory new
+      </option>
+      <option value="MINIMAL_WEAR">
+        Minimal wear
+      </option>
+      <option value="FIELD_TESTED">
+        Field tested
+      </option>
+      <option value="WELL_WORN">
+        Well worn
+      </option>
+      <option value="BATTLE_SCARRED">
+        Battle scarred
+      </option>
+    </select>
+    <input type="text" class="form-control" placeholder="Ship id"  [(ngModel)]="shipId">
+    <button *ngIf="!editIsTrue" type="button" class="button wood" (click)="addWeapon()">Add</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editWeaponSave()">Edit</button>
+    <button *ngIf="editIsTrue" type="button" class="button wood" (click)="editWeaponCancel()">Cancel</button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Type</th>
+      <th scope="col">Wear</th>
+      <th scope="col">Ship name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of weapon">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.weaponsType}}</td>
+      <td>{{item.wear}}</td>
+      <td>
+        <span class="spacer-div">
+          {{item.ship.name}}
+          <span class="spacer"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-pencil" (click)="editWeapon(item)"></span>
+          <span *ngIf="!editIsTrue" class="glyphicon glyphicon-trash" (click)="deleteWeapon(item)"></span>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
